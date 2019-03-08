@@ -20,6 +20,7 @@ public class QueueSimulator {
         return time1;
     }
 
+    //Initializes member data
     public QueueSimulator(double aR, double servT, double simT) {
         arrivalRate = aR;
         serviceTime = servT;
@@ -29,6 +30,7 @@ public class QueueSimulator {
         timeForNextDeparture = serviceTime;
     }
 
+    //Dequeues all elements from the eventQueue and returns the average difference between arrival time and departure time
     public double calcAverageWaitingTime() {
         double combinedTime = 0;
         for(int i = 0; i < eventQueue.size(); i++){
@@ -38,6 +40,7 @@ public class QueueSimulator {
         return combinedTime/eventQueue.size();
     }
 
+    //Checks if the next event should be an arrival or a departure and updates buffer and eventQueue accordingly
     public double runSimulation() {
         while(currTime < totalSimTime){
             e = (timeForNextArrival < timeForNextDeparture)||buffer.isEmpty() ? Event.ARRIVAL : Event.DEPARTURE;
